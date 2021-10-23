@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "claim-assistant-1": {
+      "hosting": {
+        "app": [
+          "claimassistant"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "claim-assistant-1"
+  }
+}
