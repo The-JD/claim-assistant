@@ -1,0 +1,7 @@
+{
+  "name": "claim-assistant",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
