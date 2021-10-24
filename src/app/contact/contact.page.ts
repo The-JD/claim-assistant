@@ -11,7 +11,11 @@ export class ContactPage implements OnInit {
   constructor(private claimService: ClaimService) { }
 
   ngOnInit() {
-    this.claimService.getUsers();
+    // this.claimService.getUsers();
+
+  }
+
+  addClaim() {
     let claimData = {
       address: "1A",
       admissionDate: "test",
@@ -34,6 +38,22 @@ export class ContactPage implements OnInit {
       sumAssured: "",
     };
     this.claimService.addClaimDetails(claimData);
+  }
+
+  addPolicy() {
+    let data = {
+      company: "LIC",
+      customerid: "1234",
+      planName: "Jeevan Anand",
+      policyNumber: "89987",
+      policyType: "A",
+      sumAssured: "2000000"
+    }
+    this.claimService.addPolicy(data);
+  }
+
+  getPolicies() {
+    this.claimService.getPolicies();
   }
 
 }

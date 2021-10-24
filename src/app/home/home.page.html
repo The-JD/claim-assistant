@@ -3,13 +3,33 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Claim Assist</ion-title>
+    <ion-title style="padding: 0px;">Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  Get immediate assistance for all your insurance claims!
 
-  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>St. Jude's Financial Services, Tuticorin</ion-card-subtitle>
+      <ion-card-title>Claim Assistance</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div style="text-align: center;">
+        <img src="../../assets/images/all.jpg" />
+      </div>
+      <p>
+        Get immediate assistance for all your insurance claims and insurance related queries!
+      </p>
+
+      <div style="text-align: center; padding-top: 20px; padding-bottom: 10px;">
+        <ion-button color="primary" [routerLink]="['/claim-form']"> Get Claim </ion-button>
+        <ion-button color="primary" [routerLink]="['/contact']"> Contact Us </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
 
 </ion-content>

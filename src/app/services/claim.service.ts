@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, doc, setDoc } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -10,10 +10,8 @@ export class ClaimService {
 
   users$: Observable<any[]>;
   claimDetails!: any;
-  // private dbPath = '/policyHolders'
   constructor(private firestore: Firestore) {
     this.claimDetails = collection(this.firestore, 'policyHolders');
-    // this.firestore.coll
   }
 
   getUsers() {
@@ -25,21 +23,43 @@ export class ClaimService {
   }
 
   addClaimDetails(claimData: any) {
+    let claimDetail = doc(this.firestore, 'policyHolders', 'policyHolders1');
+    setDoc(claimDetail, claimData, { merge: true })
+      .then(() => {
+        alert('success');
 
-    return this.claimDetails.add({ ...claimData });
+      })
+      .catch((error) => {
+        console.log('add error: ', error);
+      })
   }
 
-  // getAllUsers(): Observable<any[]> {
-  // const collection = collection(this.firestore, 'items');
-  // this.item$ = collectionData(collection);
-  // const quotes = this.firestore.collection<any>('quotes').snapshotChanges().pipe(
-  //   map(actions => {
-  //     return actions.map(
-  //       c => ({
-  //         postId: c.payload.doc.id,
-  //         ...c.payload.doc.data()
-  //       }));
-  //   }));
-  // return quotes;
-  // }
+  addPolicy(policyData: any) {
+    const index = this.getIndex();
+    console.log('index : ', index);
+    let policyDetail = doc(this.firestore, 'policies', 'policy' + index);
+    setDoc(policyDetail, policyData, { merge: true })
+      .then(() => {
+        alert('success');
+      })
+      .catch((error) => {
+        console.log('add error: ', error);
+      })
+  }
+
+  getIndex() {
+    const collect = collection(this.firestore, 'policies');
+    collectionData(collect).subscribe(data => {
+      console.log('policies data: ', data);
+      return data.length;
+    });
+  }
+
+  getPolicies() {
+    const collect = collection(this.firestore, 'policies');
+    collectionData(collect).subscribe(data => {
+      console.log('policies data: ', data);
+    });
+  }
+
 }
